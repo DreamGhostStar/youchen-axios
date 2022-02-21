@@ -1,5 +1,6 @@
 import axios from '../../src/index'
 
+// get请求
 // 检测参数值为基本数据类型
 axios({
     method: 'get',
@@ -76,4 +77,24 @@ axios({
     params: {
         bar: 'baz'
     }
+})
+
+// post请求
+// 基本请求
+axios({
+    method: 'post',
+    url: '/base/post',
+    data: {
+        a: 1,
+        b: 2
+    }
+})
+
+// Int32Array类型数据测试
+const arr = new Int32Array([21, 31])
+
+axios({
+    method: 'post',
+    url: '/base/buffer',
+    data: arr
 })
