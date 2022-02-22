@@ -7,3 +7,11 @@ export const transformRequestData = (data: any) => {
 
     return data;
 }
+
+export const transformResponseData = (data: any) => {
+    if (typeof data !== 'object') {
+        data = JSON.parse(data)
+    }
+
+    return data;
+}

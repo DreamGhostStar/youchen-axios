@@ -1,3 +1,4 @@
+import { transformResponseData } from "./helpers/data";
 import { parseHeaders } from "./helpers/headers";
 import { AxiosRequestConfig, AxiosResponseConfig } from "./types/index";
 
@@ -41,7 +42,7 @@ export default function xhr(config: AxiosRequestConfig): Promise<AxiosResponseCo
                     headers: responseHeaders,
                     status: request.status,
                     statusText: request.statusText,
-                    data: responseData,
+                    data: transformResponseData(responseData),
                     request
                 };
                 resolve(response);
