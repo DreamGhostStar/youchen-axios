@@ -14,6 +14,7 @@ export interface AxiosRequestConfig {
     params?: any;
     headers?: any;
     responseType?: XMLHttpRequestResponseType;
+    timeout?: number;
 }
 
 // axios返回参数结构
@@ -25,4 +26,12 @@ export interface AxiosResponseConfig {
     statusText: string;
     // xhr请求时的request对象
     request: any;
+}
+
+export interface AxiosError extends Error {
+    config: AxiosRequestConfig;
+    code?: string;
+    request?: any;
+    response?: AxiosResponseConfig;
+    isAxiosError: boolean;
 }
