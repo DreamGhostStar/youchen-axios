@@ -1,3 +1,4 @@
+import { parseHeaders } from "./helpers/headers";
 import { AxiosRequestConfig, AxiosResponseConfig } from "./types/index";
 
 export default function xhr(config: AxiosRequestConfig): Promise<AxiosResponseConfig> {
@@ -31,12 +32,12 @@ export default function xhr(config: AxiosRequestConfig): Promise<AxiosResponseCo
 
             // 判断readyState == 4（交互完成）status服务器返回的状态（200是ok）
             if (request.readyState == 4 && request.status == 200) {
-                const responseHeaders = request.getAllResponseHeaders();
+                const responseHeadersString = request.getAllResponseHeaders();
+                const responseHeaders = parseHeaders(responseHeadersString)
                 // 只有text下取responseText，其余皆取response
                 const responseData = responseType && responseType !== 'text' ? request.response : request.responseText
                 const response: AxiosResponseConfig = {
                     config,
-                    // TODO: 转换成对象
                     headers: responseHeaders,
                     status: request.status,
                     statusText: request.statusText,

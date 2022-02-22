@@ -29,3 +29,17 @@ export const standardHeaders = (headers: any, standardName: string) => {
         }
     })
 }
+
+export const parseHeaders = (headerString: string): Object => {
+    const res = Object.create(null)
+    const headerArr = headerString.split('\r\n');
+    for (const headerItem of headerArr) {
+        if (!headerItem) {
+            continue;
+        }
+        const [key, value] = headerItem.split(': ');
+        res[key] = value;
+    }
+
+    return res;
+}
