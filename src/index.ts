@@ -12,7 +12,7 @@ function axios(config: AxiosRequestConfig) {
     config.data = transformRequestData(config.data)
 
     // 发送请求
-    xhr(config)
+    return xhr(config)
 }
 
 export default axios
